@@ -12,9 +12,11 @@ const OptimizationResults = dynamic(() => import("@/components/OptimizationResul
 const PriceTracker        = dynamic(() => import("@/components/PriceTracker"),        { ssr: false });
 const BrandAnalysis       = dynamic(() => import("@/components/BrandAnalysis"),       { ssr: false });
 const SensitivityAnalysis = dynamic(() => import("@/components/SensitivityAnalysis"), { ssr: false });
+const MathemComparison    = dynamic(() => import("@/components/MathemComparison"),    { ssr: false });
 
 const TABS = [
   { id: "calculator",   label: "Calculator",    icon: "🧮" },
+  { id: "mathem",       label: "MatHem vs Stores", icon: "🛵" },
   { id: "comparison",   label: "Compare Stores", icon: "📊" },
   { id: "optimize",     label: "Optimize",      icon: "✅" },
   { id: "tracker",      label: "Price Tracker", icon: "📍" },
@@ -67,7 +69,7 @@ export default function Home() {
               <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">🛒</div>
               <div>
                 <h1 className="font-bold text-gray-900 text-sm leading-tight">Swedish Grocery Optimizer</h1>
-                <p className="text-xs text-gray-400">Family of 4 · Huddinge · Lidl vs ICA Maxi vs Coop</p>
+                <p className="text-xs text-gray-400">Family of 4 · Huddinge · MatHem vs Lidl vs ICA Maxi vs Coop</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -113,6 +115,7 @@ export default function Home() {
       {/* Body */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
         {tab === "calculator"  && <WeeklyCalculator quantities={quantities} tiers={tiers} onQuantityChange={onQuantityChange} onTierChange={onTierChange} onReset={onReset} />}
+        {tab === "mathem"      && <MathemComparison result={result} />}
         {tab === "comparison"  && <StoreComparison result={result} />}
         {tab === "optimize"    && <OptimizationResults result={result} />}
         {tab === "tracker"     && <PriceTracker />}
